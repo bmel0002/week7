@@ -82,7 +82,7 @@ module.exports = {
         });
     },
     getAllBetweenYears: function (req, res) {
-        Movie.find({ year: {$gte: req.params.year1 }, year: {$lte: req.params.year2} })
+        Movie.find({ year: {$gte: req.params.year2 }, year: {$lte: req.params.year1} })
             .populate('actors')
             .exec(function (err, movies) {
                 if (err) return res.status(400).json(err);
@@ -90,8 +90,23 @@ module.exports = {
                 res.json(movies);
             });
     },
+    // deleteAllBetweenYears: function (req, res) {
+    //     Movie.find({ year: {$gte: req.params.year1 }, year: {$lte: req.params.year2} })
+    //         .populate('actors')
+    //         .exec(function (err, movies) {
+    //             if (err) return res.status(400).json(err);
+    //             if (!movies) return res.status(404).json();
+    //             for (let i = 0; i < movies.length; i++) {
+    //                 Movie.findOneAndRemove({ _id: movies[i]._id }, function (err) {
+    //                     if (err) return res.status(400).json(err);
+    //                     res.json();
+    //                 });
+    //             };
+    //             res.json(movies);
+    //         });
+    // }
     deleteAllBetweenYears: function (req, res) {
-        Movie.find({ year: {$gte: req.params.year1 }, year: {$lte: req.params.year2} })
+        Movie.find({ year: {$gte: req.body.year2 }, year: {$lte: req.body.year1} })
             .populate('actors')
             .exec(function (err, movies) {
                 if (err) return res.status(400).json(err);

@@ -38,4 +38,4 @@ app.delete('/movies/:id', movies.deleteOne);
 app.delete('/movies/:movieID/:actorID', movies.deleteActor);
 app.post('/movies/:id/actors', movies.addActor);
 app.get('/movies/:year1/:year2', movies.getAllBetweenYears);
-app.put('/movies/:year1/:year2', movies.deleteAllBetweenYears);
+app.delete('/movies', movies.deleteAllBetweenYears);
